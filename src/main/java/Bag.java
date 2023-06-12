@@ -19,8 +19,6 @@ public abstract class Bag {
     private String[] contents;
 
 
-
-
     /*
      * TODO: Create a constructor that takes two arguments:
      *       - a String representing the Bag's colour
@@ -30,7 +28,7 @@ public abstract class Bag {
      * be empty (e.g. numberOfContents is 0 and an empty String array for
      * its contents.)
      */
-    public void main(String colour, int capacity) {
+    public Bag(String colour, int capacity) {
         this.color = colour;
         this.capacity = capacity;
     }
@@ -84,6 +82,12 @@ public abstract class Bag {
 
     public boolean addItem(String item) {
         if (this.numberOfContents < this.capacity) {
+            if (this.contents.length == 0){
+                String[] arr = {item};
+                this.contents = arr;
+                this.numberOfContents += 1;
+                return true;
+            }
             String[] new_arr = new String [this.contents.length+1];
             for (int i = 0; i < this.contents.length; i++){
                 new_arr[i] = this.contents[i];
@@ -112,13 +116,14 @@ public abstract class Bag {
      */
     public String popItem() {
         if (this.numberOfContents == 0) {
-            return "";
+            return null;
         }
         String item = this.contents[this.contents.length-1];
         String[] new_arr = new String [this.contents.length-1];
         for (int i = 0; i < this.contents.length-1; i++){
             new_arr[i] = this.contents[i];
         }
+        this.numberOfContents -= 1;
         this.contents = new_arr;
         return item;
     }
