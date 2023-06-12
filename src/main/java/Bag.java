@@ -28,9 +28,9 @@ public abstract class Bag {
      * be empty (e.g. numberOfContents is 0 and an empty String array for
      * its contents.)
      */
-    public Bag(String colour, int capacity) {
-        this.color = colour;
-        this.capacity = capacity;
+    public Bag(String colour, int capaciety) {
+        color = colour;
+        capacity = capaciety;
     }
 
 
@@ -51,7 +51,7 @@ public abstract class Bag {
     }
 
     public int getNumberOfContents() {
-        return this.contents.length;
+        return this.numberOfContents;
     }
 
 
@@ -82,7 +82,7 @@ public abstract class Bag {
 
     public boolean addItem(String item) {
         if (this.numberOfContents < this.capacity) {
-            if (this.contents.length == 0){
+            if (this.numberOfContents == 0){
                 String[] arr = {item};
                 this.contents = arr;
                 this.numberOfContents += 1;
@@ -92,7 +92,7 @@ public abstract class Bag {
             for (int i = 0; i < this.contents.length; i++){
                 new_arr[i] = this.contents[i];
             }
-            new_arr[this.contents.length+1] = item;
+            new_arr[this.contents.length] = item;
             this.contents = new_arr;
             this.numberOfContents += 1;
             return true;
