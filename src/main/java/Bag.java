@@ -13,6 +13,10 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
+    private String color;
+    private int numberOfContents;
+    private int capacity;
+    private String[] contents;
 
 
 
@@ -26,7 +30,10 @@ public abstract class Bag {
      * be empty (e.g. numberOfContents is 0 and an empty String array for
      * its contents.)
      */
-
+    public void main(String colour, int capacity) {
+        this.color = colour;
+        this.capacity = capacity;
+    }
 
 
 
@@ -37,7 +44,17 @@ public abstract class Bag {
      *           - getNumberOfContents
      *           - getCapacity
      */
+    public String getColor() {
+        return this.color;
+    }
 
+    public int getCapacity() {
+        return this.capacity;
+    }
+
+    public int getNumberOfContents() {
+        return this.contents.length;
+    }
 
 
 
@@ -45,6 +62,10 @@ public abstract class Bag {
      * TODO: Create a setter function called setColor which sets the
      *       color of this bag to the given color.
      */
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
 
 
@@ -61,6 +82,20 @@ public abstract class Bag {
      *       and false otherwise.
      */
 
+    public boolean addItem(String item) {
+        if (this.numberOfContents < this.capacity) {
+            String[] new_arr = new String [this.contents.length+1];
+            for (int i = 0; i < this.contents.length; i++){
+                new_arr[i] = this.contents[i];
+            }
+            new_arr[this.contents.length+1] = item;
+            this.contents = new_arr;
+            this.numberOfContents += 1;
+            return true;
+        }
+        return false;
+    }
+
 
 
 
@@ -75,7 +110,18 @@ public abstract class Bag {
      *
      * @return
      */
-
+    public String popItem() {
+        if (this.numberOfContents == 0) {
+            return "";
+        }
+        String item = this.contents[this.contents.length-1];
+        String[] new_arr = new String [this.contents.length-1];
+        for (int i = 0; i < this.contents.length-1; i++){
+            new_arr[i] = this.contents[i];
+        }
+        this.contents = new_arr;
+        return item;
+    }
 
 
 
@@ -86,8 +132,7 @@ public abstract class Bag {
      * @param n the amount to increase this Bag's capacity by
      */
     public void increaseCapacity(int n) {
-        // TODO: Implement this method.
-
+        this.capacity += n;
     }
 
     /**
